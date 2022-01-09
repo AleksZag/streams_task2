@@ -23,18 +23,21 @@ public class Main {
 
 
         List<String> surnameСonscript = persons.stream()
-                .filter(age -> age.getAge() > 18 && age.getAge() < 27)
+                .filter(sex->sex.getSex().equals(Sex.MAN))
+                .filter(age -> age.getAge() >= 18 && age.getAge() < 27)
                 .map(family -> family.getFamily())
                 .collect(Collectors.toList());
 
 
         List<String> workerMale = persons.stream()
+                .filter(sex->sex.getSex().equals(Sex.MAN))
                 .filter(age -> age.getAge() >= 18 && age.getAge() < 65)
                 .sorted(Comparator.comparing(Person::getFamily))
                 .map(family -> family.getFamily())
                 .collect(Collectors.toList());
 
         List<String> workerFemale = persons.stream()
+                .filter(sex->sex.getSex().equals(Sex.WOMAN))
                 .filter(age -> age.getAge() >= 18 && age.getAge() < 60)
                 .sorted(Comparator.comparing(Person::getFamily))
                 .map(family -> family.getFamily())
